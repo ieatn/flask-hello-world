@@ -5,13 +5,12 @@ from openai import OpenAI
 
 app = Flask(__name__)
 CORS(app)
-
-api_key = os.getenv('OPENAI_API_KEY')
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 @app.route('/')
 def home():
-    return f"Hello, World! API Key: {api_key}"
+    my_variable = os.environ.get("OPENAI_API_KEY")
+    return f"Hello, {my_variable}!"
 
 @app.route('/about')
 def about():
