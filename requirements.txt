@@ -1,3 +1,4 @@
 flask==3.0.3
 flask-cors==3.0.10
 python-dotenv==1.0.0
+openai==1.41.0
