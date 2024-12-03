@@ -15,6 +15,25 @@ def home():
 
 @app.route('/chat', methods=['POST'])
 def chat():
-    data = request.get_json()  # Ensure you're getting JSON data
-    print(data)  # Debug by printing the incoming data
-    return jsonify(data)  # Return the same data for testing
+    try:
+        data = request.json
+        message = data.get('message')
+        
+        if not message:
+            return jsonify({'error': 'Message is required'}), 400
+        response = client.chat.completions.create(
+            model="gpt-4o-mini", # Faster model
+            messages=[
+                {"role": "system", "content": "You are a helper who gives very brief explanations."},
+                {"role": "user", "content": f"{message}"}
+            ],
+            max_tokens=500,  # Short responses
+            temperature=0.7  # More focused responses
+        )
+        ai_response = response.choices[0].message.content
+        return jsonify({
+            'response': ai_response
+        })
+    except Exception as e:
+        print(f"Unexpected error: {str(e)}")
+        return jsonify({'error': 'Internal server error'}), 500
