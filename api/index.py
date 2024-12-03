@@ -9,9 +9,10 @@ client = os.getenv("OPENAI_API_KEY")
 
 @app.route('/')
 def home():
-    env_variable = os.getenv("OPENAI_API_KEY", "Not Found")
-    return f"The value of YOUR_ENV_VARIABLE is: {env_variable}"
-
+    # env_variable = os.getenv("OPENAI_API_KEY", "Not Found")
+    # return f"The value of YOUR_ENV_VARIABLE is: {env_variable}"
+    return client
+    
 @app.route('/testing', methods=['POST'])
 def post_data():
     data = request.get_json()  # Ensure you're getting JSON data
