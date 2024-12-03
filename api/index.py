@@ -8,5 +8,6 @@ CORS(app)
 
 @app.route('/')
 def home():
-    return 'Hello, World!'
+    env_variable = os.getenv("OPENAI_API_KEY", "Not Found")
+    return f"The value of YOUR_ENV_VARIABLE is: {env_variable}"
 
