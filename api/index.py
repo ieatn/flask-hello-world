@@ -9,8 +9,12 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 @app.route('/')
 def home():
-    return f"Hello, world!"
+    return "Hello, world!"
 
 @app.route('/about')
 def about():
     return 'About'
+
+
+
+
